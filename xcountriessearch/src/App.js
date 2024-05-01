@@ -31,7 +31,7 @@ function App() {
 
   useEffect(() => {
     let findCountry = countries.filter((country) => { return country.name.common.toLowerCase().includes(countryName.toLocaleLowerCase())});
-    if(countryName.length >= 1){
+    if(countryName && countryName.length > 0){
       setCountries(findCountry);
     }else{
       getCountries();
