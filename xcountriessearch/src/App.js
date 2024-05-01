@@ -7,13 +7,7 @@ function App() {
   const [countries, setCountries] = useState([]);
   const [countryName, setCountryName] = useState('');
 
-  const countryCard = {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100vh"
-  }
+  
 
   const cardStyle ={
     display: "flex",
@@ -64,7 +58,7 @@ function App() {
           <input value={countryName} type='text' onChange={(e)=>setCountryName(e.target.value)} placeholder='Search for Countries'/>
         </nav>
       </div>
-      <div style={countryCard}>
+      <div className='countryCard'>
         {countries.map((c) => (
           <div key={c.cca3} style={cardStyle}>
             <img 
