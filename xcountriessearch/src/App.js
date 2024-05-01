@@ -50,7 +50,7 @@ function App() {
           <input value={countryName} type='text' onChange={e => setCountryName(e.target.value)}/>
         </nav>
       </div>
-      <div className='countryCard' style={containerStyle}>
+      <div style={containerStyle}>
         {filteredCountries.map((country) => (
           <CountryCard country={country} />
         ))}

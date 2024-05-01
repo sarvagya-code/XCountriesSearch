@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import './CountryCard.css'
 
 export default function CountryCard({country}) {
     const cardStyle ={
@@ -18,15 +19,17 @@ export default function CountryCard({country}) {
         height: "100px"
       }
   return (
-    <div key={country.cca3} style={cardStyle}>
-        <img
-            src={country.flags.png}
-            alt={country.name.common}
-            style={flagStyle}
-        />
-        <p>{}</p>
-        <span>{}</span>
-        <h2>{country.name.common}</h2>
+    <div className='countryCard'>
+      <div key={country.cca3} style={cardStyle}>
+          <img
+              src={country.flags.png}
+              alt={country.name.common}
+              style={flagStyle}
+          />
+          <p>{}</p>
+          <span>{}</span>
+          <h2>{country.name.common}</h2>
+      </div>
     </div>
   )
 }
