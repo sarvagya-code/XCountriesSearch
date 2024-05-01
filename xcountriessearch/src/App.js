@@ -1,50 +1,56 @@
+import React from 'react';
 import './App.css';
-import {useEffect, useState} from "react";
-import axios from "axios";
+import { useEffect, useState } from 'react';
 import CountryCard from './CountryCard';
+import axios from 'axios';
 
 function App() {
-
   const [countries, setCountries] = useState([]);
-  const [countryName, setCountryName] = useState('');
+  const [countryName, setCountryName] = useState('')
 
-  const fetchData = async() => {
+  const containerStyle = {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh"
+  }
+
+  const getCountries = async() => {
     try{
       let res = await axios.get("https://restcountries.com/v3.1/all");
-      let data = res.data;
-      setCountries(data);
-    }catch(err){
-      console.error("Error fetching data:", err);
+      setCountries(res.data);
+    }catch(e){
+      console.error("Cannot fetch countries")
     }
-  };
+  }
 
-  useEffect(() =>{
-    fetchData();
-  },[]);
+  useEffect(() => {
+    getCountries();
+  }, []);
 
-  useEffect(()=>{
-    let searchCountry = countries.filter((country) => country.name.common.toLowerCase().includes(countryName.toLocaleLowerCase()));
-    if(countryName.length >=1){
-      setCountries(searchCountry);
-    } else{
-      fetchData();
+  useEffect(() => {
+    let fC = countries.filter(country => country.name.common.toLowerCase().includes(countryName.toLocaleLowerCase()));
+    if(countryName.length >= 1){
+      setCountries(fC);
+    }else{
+      getCountries();
     }
-  } ,[countryName]);
+  }, [countryName]);
 
-
-
+  console.log(countryName)
   return (
     <div className="App">
-      <div style={{paddingBottom: '2rem'}}>
+      <div>
         <nav>
-          <input value={countryName} type='text' onChange={(e)=>setCountryName(e.target.value)} placeholder='Search for Countries'/>
+          <input value={countryName} type='text' onChange={e => setCountryName(e.target.value)}/>
         </nav>
       </div>
-      <div className='countryCard'>
-      {countries.map((country) => (
+      <div style={containerStyle}>
+        {countries.map((country) => (
           <CountryCard country={country} />
         ))}
-      </div>
+    </div>
     </div>
   );
 }
