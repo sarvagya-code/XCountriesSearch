@@ -15,8 +15,7 @@ function App() {
     flexWrap: "wrap",
     justifyContent: "center",
     alignItems: "center",
-    height: "100vh",
-    paddingTop: "2rem"
+    height: "100vh"
   }
 
   const getCountries = async() => {
