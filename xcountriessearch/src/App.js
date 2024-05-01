@@ -7,6 +7,8 @@ import axios from 'axios';
 function App() {
   const [countries, setCountries] = useState([]);
   const [countryName, setCountryName] = useState('')
+  const [filteredCountries, setFilteredCountries] = useState([]);
+
 
   const containerStyle = {
     display: "flex",
@@ -30,13 +32,15 @@ function App() {
   }, []);
 
   useEffect(() => {
-    let findCountry = countries.filter((country) => { return country.name.common.toLowerCase().includes(countryName.toLocaleLowerCase())});
-    if(countryName && countryName.length > 0){
-      setCountries(findCountry);
-    }else{
-      getCountries();
+    if (countryName.trim() === '') {
+      setFilteredCountries(countries);
+    } else {
+      const filtered = countries.filter((country) =>
+        country.name.common.toLowerCase().includes(countryName.toLowerCase())
+      );
+      setFilteredCountries(filtered);
     }
-  }, [countryName]);
+  }, [countryName, countries]);
 
   console.log(countryName)
   return (
@@ -47,7 +51,7 @@ function App() {
         </nav>
       </div>
       <div className='countryCard' style={containerStyle}>
-        {countries.map((country) => (
+        {filteredCountries.map((country) => (
           <CountryCard country={country} />
         ))}
     </div>
