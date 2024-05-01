@@ -15,7 +15,8 @@ function App() {
     flexWrap: "wrap",
     justifyContent: "center",
     alignItems: "center",
-    height: "100vh"
+    height: "100vh",
+    paddingTop: "2rem"
   }
 
   const getCountries = async() => {
@@ -47,7 +48,7 @@ function App() {
     <div className="App">
       <div>
         <nav>
-          <input value={countryName} type='text' onChange={e => setCountryName(e.target.value)}/>
+          <input value={countryName} type='text' onChange={e => setCountryName(e.target.value)} placeholder='Search for Countries'/>
         </nav>
       </div>
       <div style={containerStyle}>
