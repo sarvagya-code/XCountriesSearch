@@ -12,7 +12,7 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-.countryCard{
+.countryCard {
   display: flex;
   justify-content: center;
   align-items: center;

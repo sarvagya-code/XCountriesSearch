@@ -30,9 +30,9 @@ function App() {
   }, []);
 
   useEffect(() => {
-    let fC = countries.filter(country => country.name.common.toLowerCase().includes(countryName.toLocaleLowerCase()));
+    let findCountry = countries.filter((country) => { return country.name.common.toLowerCase().includes(countryName.toLocaleLowerCase())});
     if(countryName.length >= 1){
-      setCountries(fC);
+      setCountries(findCountry);
     }else{
       getCountries();
     }
@@ -46,7 +46,7 @@ function App() {
           <input value={countryName} type='text' onChange={e => setCountryName(e.target.value)}/>
         </nav>
       </div>
-      <div style={containerStyle}>
+      <div className='countryCard' style={containerStyle}>
         {countries.map((country) => (
           <CountryCard country={country} />
         ))}
